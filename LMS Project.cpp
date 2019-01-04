@@ -94,7 +94,7 @@ int main()
 	int option, crtHrsList[100], semList[100], credit_hours, semester;
 	char course_code[6], course_name[50];
 	string codeList[100], nameList[100], edit_course ;
-	bool a = true;
+	int a=1;
 	
 	while(a){
 	
@@ -112,31 +112,33 @@ int main()
 	switch(option){
 		
 		case 1:
-			cout << "Enter the details of the course: ";
-			cin >> course_code >> credit_hours >> semester;
-			cin.get(course_name, 100);
+			{
+				cout << "Enter the details of the course: ";
+				cin >> course_code >> credit_hours >> semester;
+				cin.get(course_name, 100);
 			
-			if(isValidCourseCode(course_code) == 0){
-				cout << "Invalid Course Code\n";
-			}
-			if(isValidCreditHours(credit_hours) ==0){
-				cout << "Invalid Credit" << endl;
-			}
-			if(isValidSemester(semester)==0){
-				cout << "Invalid Semester\n";
-			}
-			bool b=isValidCourseName(course_name);
-			if(b==false){
-				
+				if(isValidCourseCode(course_code) == 0){
+					cout << "Invalid Course Code\n";
+				}
+				if(isValidCreditHours(credit_hours) ==0){
+					cout << "Invalid Credit" << endl;
+				}
+				if(isValidSemester(semester)==0){
+					cout << "Invalid Semester\n";
+				}
+				bool b=isValidCourseName(course_name);
+					if(b==false){
 				cout << "Invalid Course Name\n";
+				}
+			
+				AddCourse(codeList,nameList, crtHrsList, semList,course_code, credit_hours, semester, course_name);	
+				break;
 			}
 			
-			AddCourse(codeList,nameList, crtHrsList, semList,course_code, credit_hours, semester, course_name);	
-			break;
 			
-		case :
-		
-		
+		case 2:
+		    cout << "Hello";
+			break;
 	}
 	
 	cout << endl;
