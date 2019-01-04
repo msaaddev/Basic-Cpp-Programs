@@ -89,11 +89,24 @@ void AddCourse(string codeList[],string nameList[], int crtHrsList[], int semLis
 	
 }
 
+
+//this function will check whether the course code which we want to edit is in the program.
+int check_course_code(string codeList[], string edit_course_code){
+	bool value=0;
+		for(int x=0; x < 100; x++){
+		if(codeList[x] == edit_course_code){
+			value=1;
+			break;
+		}
+	}
+	return value;	
+} 
+
 int main()
 {
 	int option, crtHrsList[100], semList[100], credit_hours, semester;
 	char course_code[6], course_name[50];
-	string codeList[100], nameList[100], edit_course ;
+	string codeList[100], nameList[100], edit_course_code ;
 	int a=1;
 	
 	while(a){
@@ -133,12 +146,32 @@ int main()
 			
 				AddCourse(codeList,nameList, crtHrsList, semList,course_code, credit_hours, semester, course_name);	
 				break;
+				
 			}
 			
 			
 		case 2:
-		    cout << "Hello";
-			break;
+			{
+				cout << "Enter the course code to edit: ";
+				cin >> edit_course_code;
+				
+				if(check_course_code(codeList, edit_course_code)==0){
+					cout << endl << "This is no course by this course code";
+				}
+				
+				break;
+			}
+			
+			
+			
+			
+			
+		case 6:
+			{
+				a=0;
+				break;
+			}
+		   
 	}
 	
 	cout << endl;
