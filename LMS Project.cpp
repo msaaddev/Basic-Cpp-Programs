@@ -126,6 +126,11 @@ void EditCourse(string codeList[],string nameList[], int crtHrsList[], int semLi
 		cout << "Course has been edited successfully\n"; 
 }
 
+//this function  will delete a course which is given by the user
+void DeleteCourse(string codeList[],string nameList[], int crtHrsList[], int semList[]){
+	
+}
+
 int main()
 {
 	int option, crtHrsList[100], semList[100], credit_hours, semester;
@@ -197,8 +202,20 @@ int main()
 		case 3:
 			{
 				cout << "Enter the course code to delete: ";
-				cin >> delete_course_code;
+				cin >> delete_course_code;	
+					
+					if(check_course_code(codeList, delete_course_code)==0){
+						cout << endl << "This is no course by this course code";
+					}
+					else
+					{
+						DeleteCourse(codeList, nameList, crtHrsList, semList, course_code, credit_hours, semester, course_name);
+	
+					}
+				break;
 			}
+				
+			
 			
 			
 			
