@@ -102,11 +102,35 @@ int check_course_code(string codeList[], string edit_course_code){
 	return value;	
 } 
 
+//this function will return the index where details of the course are placed
+int index_course_code(string codeList[], string edit_course_code){
+	int index;
+		for(int x=0; x < 100; x++){
+		if(codeList[x] == edit_course_code){
+			index=x;
+			break;
+		}
+	}
+	return index;
+}
+//this statement will declare edit_course and delete course for the whole program
+string edit_course_code, delete_course_code;
+
+//this function will replace a course of the specified course code with another course detail
+void EditCourse(string codeList[],string nameList[], int crtHrsList[], int semList[], char course_code[], int credit_hours, int semester, char course_name[]){
+		int n=index_course_code(codeList, edit_course_code);
+			codeList[n]= course_code;
+			crtHrsList[n]=credit_hours;
+			semList[n]=semester;
+			nameList[n]=course_name;
+		cout << "Course has been edited successfully\n"; 
+}
+
 int main()
 {
 	int option, crtHrsList[100], semList[100], credit_hours, semester;
 	char course_code[6], course_name[50];
-	string codeList[100], nameList[100], edit_course_code ;
+	string codeList[100], nameList[100];
 	int a=1;
 	
 	while(a){
@@ -130,21 +154,21 @@ int main()
 				cin >> course_code >> credit_hours >> semester;
 				cin.get(course_name, 100);
 			
-				if(isValidCourseCode(course_code) == 0){
-					cout << "Invalid Course Code\n";
-				}
-				if(isValidCreditHours(credit_hours) ==0){
-					cout << "Invalid Credit" << endl;
-				}
-				if(isValidSemester(semester)==0){
-					cout << "Invalid Semester\n";
-				}
-				bool b=isValidCourseName(course_name);
-					if(b==false){
-				cout << "Invalid Course Name\n";
-				}
+					if(isValidCourseCode(course_code) == 0){
+						cout << "Invalid Course Code\n";
+					}
+					if(isValidCreditHours(credit_hours) ==0){
+						cout << "Invalid Credit" << endl;
+					}
+					if(isValidSemester(semester)==0){
+						cout << "Invalid Semester\n";
+					}
+					bool b=isValidCourseName(course_name);
+						if(b==false){
+					cout << "Invalid Course Name\n";
+					}
 			
-				AddCourse(codeList,nameList, crtHrsList, semList,course_code, credit_hours, semester, course_name);	
+				AddCourse(codeList,nameList, crtHrsList, semList,course_code, credit_hours, semester, course_name);
 				break;
 				
 			}
@@ -155,11 +179,25 @@ int main()
 				cout << "Enter the course code to edit: ";
 				cin >> edit_course_code;
 				
-				if(check_course_code(codeList, edit_course_code)==0){
-					cout << endl << "This is no course by this course code";
-				}
-				
+					if(check_course_code(codeList, edit_course_code)==0){
+						cout << endl << "This is no course by this course code";
+					}
+					else
+					{
+						cout << "Enter the new details of the course: ";
+						cin >> course_code >> credit_hours >> semester;
+						cin.get(course_name, 100);
+						
+						EditCourse(codeList,nameList, crtHrsList, semList,course_code, credit_hours, semester, course_name);
+					}
+					
 				break;
+			}
+			
+		case 3:
+			{
+				cout << "Enter the course code to delete: ";
+				cin >> delete_course_code;
 			}
 			
 			
@@ -170,6 +208,11 @@ int main()
 			{
 				a=0;
 				break;
+			}
+			
+		default:
+			{
+				cout << endl << "Invalid Option. Please select from 1 to 6. ";
 			}
 		   
 	}
